@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Probar API REST</title>
+    <style>
+      img {
+        height: auto;
+        width: 320px;
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main></main>
+
+    <script type="module">
+      fetch("http://localhost:3000/movies?genre=Action")
+        .then((res) => res.json())
+        .then((movies) => {
+          const html = movies
+            .map((movie) => {
+              return `<article data-id="${movie.id}">
+                    <h2>${movie.title}</h2>
+                    <img src="${movie.poster}" alt="${movie.title}">
+                    <p>${movie.year}</p>
+                    </article>
+                    
+                    <button>Eliminar</button>
+                    `;
+            })
+            .join("");
+
+          document.querySelector("main").innerHTML = html;
+
+          document.addEventListener('click', (e)=> {
+            if(e.target.matches('button')){
+                
+            }
+          })
+        });
+    </script>
+  </body>
+</html>
