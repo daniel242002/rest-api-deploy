@@ -1,5 +1,5 @@
 // vamos a utilizar ésta herramienta para realizar las validaciones de nuestras peticiones
-const zod = require("zod");
+import zod from "zod";
 
 const movieSchema = zod.object({
   title: zod.string({
@@ -31,20 +31,11 @@ const movieSchema = zod.object({
   ),
 });
 
-const validateMovie = (object) => {
+export const validateMovie = (object) => {
   // lo que hace es devolver un objeto resolve que te va decir si hay un error o si hay datos
   return movieSchema.safeParse(object);
 };
 
-const validatePartialMovie = (object) => {
+export const validatePartialMovie = (object) => {
   return movieSchema.partial().safeParse(object);
-};
-
-module.exports = {
-  validateMovie,
-  validatePartialMovie,
-};
-
-const saludo = () => {
-  console.log(saludo);
 };
